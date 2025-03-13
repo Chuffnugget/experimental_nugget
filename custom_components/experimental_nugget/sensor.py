@@ -25,6 +25,7 @@ class RandomNumberSensor(Entity):
         self._entry = entry
         self._state = None
         self._update_task = None
+        _LOGGER.debug("Initializing RandomNumberSensor with entry_id: %s", self._entry.entry_id)
 
     @property
     def name(self):
@@ -43,12 +44,14 @@ class RandomNumberSensor(Entity):
         Using the config entry's unique entry_id ensures the sensor is attached to the
         Experimental Nugget device in the UI.
         """
-        return {
+        device_info = {
             "identifiers": {(DOMAIN, self._entry.entry_id)},
             "name": "Experimental Nugget",
             "manufacturer": "Chuffnugget",
             "model": "Random Number Sensor",
         }
+        _LOGGER.debug("device_info: %s", device_info)
+        return device_info
 
     async def async_added_to_hass(self):
         """Start the dedicated update loop when the entity is added."""
