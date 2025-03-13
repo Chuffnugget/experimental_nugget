@@ -3,7 +3,7 @@ import voluptuous as vol
 
 from homeassistant import config_entries
 
-DOMAIN = "experiemtental_nugget"
+DOMAIN = "experimental_nugget"
 
 class ExperimentalNuggetConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     """Handle a config flow for Experimental Nugget."""
