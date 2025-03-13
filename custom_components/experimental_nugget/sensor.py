@@ -13,15 +13,16 @@ DOMAIN = "experiemtental_nugget"
 
 async def async_setup_entry(hass, entry, async_add_entities):
     """Set up sensor platform from a config entry."""
-    sensor = RandomNumberSensor(hass)
+    sensor = RandomNumberSensor(hass, entry)
     async_add_entities([sensor])
 
 class RandomNumberSensor(Entity):
     """Representation of a sensor that generates a random number every 3 seconds using a dedicated async thread."""
 
-    def __init__(self, hass):
-        """Initialize the sensor."""
+    def __init__(self, hass, entry):
+        """Initialize the sensor with the config entry."""
         self.hass = hass
+        self._entry = entry
         self._state = None
         self._update_task = None
 
@@ -37,10 +38,14 @@ class RandomNumberSensor(Entity):
 
     @property
     def device_info(self):
-        """Return device information to tie this entity to your integration."""
+        """Return device information to tie this entity to your integration.
+        
+        Using the config entry's unique entry_id ensures the sensor is attached to the
+        Experimental Nugget device in the UI.
+        """
         return {
-            "identifiers": {(DOMAIN, "unique_random_number_sensor")},
-            "name": "Experimental Nugget Sensor",
+            "identifiers": {(DOMAIN, self._entry.entry_id)},
+            "name": "Experimental Nugget",
             "manufacturer": "Chuffnugget",
             "model": "Random Number Sensor",
         }
