@@ -1,9 +1,10 @@
 {
   "domain": "experiemtental_nugget",
   "name": "Experimental Nugget",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "documentation": "https://github.com/Chuffnugget/experiemtental_nugget",
   "requirements": [],
   "dependencies": [],
-  "codeowners": []
+  "codeowners": [],
+  "config_flow": true
 }
