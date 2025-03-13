@@ -7,11 +7,6 @@ from homeassistant.helpers.event import async_track_time_interval
 
 _LOGGER = logging.getLogger(__name__)
 
-async def async_setup_platform(hass, config, async_add_entities, discovery_info=None):
-    """Set up the sensor from configuration.yaml (legacy)."""
-    sensor = RandomNumberSensor(hass)
-    async_add_entities([sensor])
-
 async def async_setup_entry(hass, entry, async_add_entities):
     """Set up sensor platform from a config entry."""
     sensor = RandomNumberSensor(hass)
