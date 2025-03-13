@@ -1,5 +1,5 @@
 # sensor.py
-# This file creates a sensor entity for the experiemtental_nugget integration.
+# This file creates a sensor entity for the experimental_nugget integration.
 # It generates a random number between 1 and 100 every 3 seconds using a dedicated async thread.
 # The sensor is tied to the Experimental Nugget device entry.
 
@@ -9,7 +9,7 @@ import logging
 from homeassistant.helpers.entity import Entity
 
 _LOGGER = logging.getLogger(__name__)
-DOMAIN = "experiemtental_nugget"
+DOMAIN = "experimental_nugget"
 
 async def async_setup_entry(hass, entry, async_add_entities):
     """Set up sensor platform from a config entry."""
