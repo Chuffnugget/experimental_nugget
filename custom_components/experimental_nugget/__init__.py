@@ -1,12 +1,12 @@
 #__init__.py
-"""Initialize the experiemtental_nugget integration."""
+"""Initialize the experimental_nugget integration."""
 import logging
 
 from homeassistant.core import HomeAssistant
 from homeassistant.config_entries import ConfigEntry
 
 _LOGGER = logging.getLogger(__name__)
-DOMAIN = "experiemtental_nugget"
+DOMAIN = "experimental_nugget"
 
 async def async_setup(hass: HomeAssistant, config: dict):
     """Set up the integration from configuration.yaml (if any)."""
