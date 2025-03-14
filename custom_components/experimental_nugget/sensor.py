@@ -13,6 +13,7 @@ DOMAIN = "experimental_nugget"
 
 async def async_setup_entry(hass, entry, async_add_entities):
     """Set up sensor platform from a config entry."""
+    _LOGGER.debug("Setting up sensor platform for entry %s", entry.entry_id)
     sensor = RandomNumberSensor(hass, entry)
     async_add_entities([sensor])
 
@@ -55,14 +56,17 @@ class RandomNumberSensor(Entity):
 
     async def async_added_to_hass(self):
         """Start the dedicated update loop when the entity is added."""
+        _LOGGER.debug("Adding sensor entity to hass with entry_id: %s", self._entry.entry_id)
         self._update_task = self.hass.async_create_task(self._update_loop())
 
     async def _update_loop(self):
         """Continuously update the sensor every 3 seconds."""
+        _LOGGER.debug("Starting update loop for sensor with entry_id: %s", self._entry.entry_id)
         while True:
             try:
                 await asyncio.sleep(3)
             except asyncio.CancelledError:
+                _LOGGER.debug("Update loop cancelled for sensor with entry_id: %s", self._entry.entry_id)
                 break
             self._update_random_number()
             self.async_write_ha_state()
@@ -74,9 +78,10 @@ class RandomNumberSensor(Entity):
 
     async def async_will_remove_from_hass(self):
         """Cancel the update task when removing the entity."""
+        _LOGGER.debug("Removing sensor entity with entry_id: %s", self._entry.entry_id)
         if self._update_task is not None:
             self._update_task.cancel()
             try:
                 await self._update_task
             except asyncio.CancelledError:
-                pass
+                _LOGGER.debug("Update task cancelled successfully for sensor with entry_id: %s", self._entry.entry_id)
