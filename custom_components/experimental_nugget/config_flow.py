@@ -5,7 +5,7 @@ from homeassistant import config_entries
 
 DOMAIN = "experimental_nugget"
 
-class ExperimentalNuggetConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
+class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     """Handle a config flow for Experimental Nugget."""
 
     VERSION = 1
