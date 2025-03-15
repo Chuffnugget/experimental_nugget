@@ -13,7 +13,7 @@ DOMAIN = "experimental_nugget"
 
 async def async_setup_entry(hass, entry, async_add_entities):
     """Set up sensor platform from a config entry."""
-    _LOGGER.debug("Setting up sensor platform for entry %s", entry.entry_id)
+    _LOGGER.debug("Setting up sensor platform for config entry %s", entry.entry_id)
     sensor = RandomNumberSensor(hass, entry)
     async_add_entities([sensor])
 
@@ -56,7 +56,7 @@ class RandomNumberSensor(Entity):
 
     async def async_added_to_hass(self):
         """Start the dedicated update loop when the entity is added."""
-        _LOGGER.debug("Adding sensor entity to hass with entry_id: %s", self._entry.entry_id)
+        _LOGGER.debug("Adding sensor entity with entry_id: %s", self._entry.entry_id)
         self._update_task = self.hass.async_create_task(self._update_loop())
 
     async def _update_loop(self):
